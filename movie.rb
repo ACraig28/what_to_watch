@@ -1,11 +1,9 @@
-#require 'CSV'
-#CSV.foreach("movie.csv") do |row|
-#end
-
-attr_reader :id, :title, :release_date, :genre
-
+require 'CSV'
+movies = CSV.read("movie.csv")
+#get this worked out
 
 class Movie
+  attr_reader :id, :title, :release_date, :genre
   def initialize(id, title, release_date, genre)
     @id = id
     @title = title
@@ -14,7 +12,14 @@ class Movie
   end
 end
 
-  def find_movie(movie_id)
+  def find_movie(movies, movie_id)
+    if movie_id == @id
+      return @title
+    end
   end
 end
-# genre will be a hash
+
+
+if movies.each do |object|
+  puts object.find_movie
+end
