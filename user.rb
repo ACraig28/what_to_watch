@@ -14,22 +14,15 @@ class User
 
   def get_id_by_age
     if @age < 20
-      puts "user #{@id} is #{@age}"
+      return "user #{@id} is #{@age}"
     end
   end
 end
 
-users.map do |subarray|
-  user << User.new(subarray[0], subarray[1], subarray[2], subarray[4])
-end
-
-#use =[] ?
-#user.map do |subarray| ?
-#@id => {@age, @gender, @zipcode,}?
-#end
-
-
+ users.map do |subarray|
+   user << User.new(subarray[0], subarray[1], subarray[2], subarray[4])
+ end
 
 user.each do |object|
-  object.get_id_by_age
-end
+   object.get_id_by_age
+ end

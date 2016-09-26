@@ -1,9 +1,10 @@
 require 'CSV'
-ratings = CSV.read('u.data')
-#need to get this sorted out
-rating =[]
+ratings = []
 
-
+CSV.foreach('data.txt') do |row|  # is this only working because of the txt extension
+ subarray = row[0].gsub(/\s+/, ',').split(',')
+ ratings << subarray
+end
 
 class Rating
   attr_reader :user_id, :movie_id, :rating
@@ -14,23 +15,22 @@ class Rating
   end
 
   def find_ratings(movie_id)
-    movie_rating =[]
-    rating.each do |object|
-    if movie_id == @movie_id
+    movie_rating = []
+    if @movie_id == movie_id
       movie_rating << @rating
       return movie_rating
     end
   end
 
-  def find_average_rating (movie_id)
-    rating.reduce do |#look up reduce
-  end
+  # def find_average_rating (movie_id)
+  #   rating.reduce #look up reduce
+  # end
 end
 
- ratings.map do |subarray|
-   rating << Rating.new(subarray[0], subarray[1], subarray[2])
+ratings.map! do |subarray|
+  Rating.new(subarray[0], subarray[1], subarray[2])
 end
 
-rating.each do |object|
-  object.find_ratings(movie_id)
+ratings.each do |objects|
+  print objects.find_ratings(200)
 end

@@ -2,6 +2,11 @@ require 'CSV'
 movies = CSV.read("movie.csv")
 #get this worked out
 
+CSV.foreach('item.txt', "r:ISO-8859-1") do |row|
+ subarray = row[0].gsub(/\|/, ',').split(',')
+ @movie_data << subarray
+ end
+
 class Movie
   attr_reader :id, :title, :release_date, :genre
   def initialize(id, title, release_date, genre)
